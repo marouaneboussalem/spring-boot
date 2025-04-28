@@ -3,6 +3,7 @@ package com.devmaro.db.dao.Impl;
 import com.devmaro.db.TestDataUtil;
 import com.devmaro.db.dao.impl.AuthorDaoImpl;
 import com.devmaro.db.domain.Author;
+import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentMatchers;
@@ -48,8 +49,11 @@ public class AuthorDaoImplTests {
      public void testThatUpdateGeneratesTheCorrectSql(){
         Author author = TestDataUtil.CreateTestAuthorA();
         underTest.update(3L,author);
-        verify(jdbcTemplate).update("UPDATE authors SET id=?, name=? ,age=? WHERE id = ?",
-                1L,"Marouane mar",40,3L
+
+        verify(jdbcTemplate).update(
+                "UPDATE authors SET id=?, name=? ,age=? WHERE id = ?",
+                1L ,"Marouane mar" , 40, 3L
+
         );
 
     }

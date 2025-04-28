@@ -3,6 +3,7 @@ package com.devmaro.db.dao.Impl;
 import com.devmaro.db.TestDataUtil;
 import com.devmaro.db.dao.impl.AuthorDaoImpl;
 import com.devmaro.db.dao.impl.BookDaoImpl;
+import com.devmaro.db.domain.Author;
 import com.devmaro.db.domain.Book;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -48,5 +49,14 @@ public class BookDaoImplTests {
 
 
     }
+
+    @Test
+
+    public void  testThatUpdateGenerateTheCorrectSql(){
+        Book book = TestDataUtil.CreateTestBookA();
+        undertest.update("sh1",book);
+        verify(jdbcTemplate).update("UPDATE books SET isbn=?, title=?, author_id=?  WHERE isbn=?", "sh1", "clean code",1L,"sh1");
+    }
+
 
 }

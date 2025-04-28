@@ -51,7 +51,7 @@ public class AuthorDaoImpl implements AuthorDao {
 
 
     @Override
-    public void update(Long id ,Author author) {
+    public void  update(Long id ,Author author) {
         jdbcTemplate.update("UPDATE authors SET id=?, name=? ,age=? WHERE id = ?",author.getId(),author.getName(),author.getAge(),id);
     }
 }

@@ -1,6 +1,7 @@
 package com.devmaro.db.dao.Impl;
 
 import com.devmaro.db.TestDataUtil;
+import com.devmaro.db.dao.BookDao;
 import com.devmaro.db.dao.impl.AuthorDaoImpl;
 import com.devmaro.db.dao.impl.BookDaoImpl;
 import com.devmaro.db.domain.Author;
@@ -73,7 +74,41 @@ public class BookDaoImplIntegrationTests {
                 .hasSize(4)
                 .contains(book1,book2,book3,book4);
 
-        System.out.println("********************************************************************"+book1.getAuthorId());
-        System.out.println("********************************************************************"+book2.getAuthorId());
+
+    }
+
+    @Test
+    public void testThatBookCanBeUpdated(){
+        Author author = TestDataUtil.CreateTestAuthorA();
+        authorDao.create(author);
+
+
+
+        Book bookA = TestDataUtil.CreateTestBookA();
+        bookA.setAuthorId(author.getId());
+
+
+
+        underTest.create(bookA);
+
+
+        System.out.println(bookA.getIsbn()+" 111111111111111"+bookA.getTitle());
+
+
+        bookA.setTitle("UPDATed");
+
+
+
+        underTest.update(bookA.getIsbn(),bookA);
+
+        Optional<Book> result= underTest.findOne(bookA.getIsbn());
+        System.out.println(result);
+        assertThat(result).isPresent();
+        assertThat(result.get()).isEqualTo(bookA);
+
+        System.out.println(bookA.getIsbn()+" 22222222222222222"+bookA.getTitle());
+
+
+
     }
 }

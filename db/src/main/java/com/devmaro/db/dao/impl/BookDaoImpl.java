@@ -37,6 +37,8 @@ public class BookDaoImpl implements BookDao {
         return jdbcTemplate.query("SELECT isbn,title,author_id FROM Books", new BookRowMapper());
     }
 
+
+
     public static class BookRowMapper implements RowMapper{
 
         @Override
@@ -47,4 +49,10 @@ public class BookDaoImpl implements BookDao {
                     .build();
         }
     }
+
+    @Override
+    public void update(String isbn, Book book) {
+        jdbcTemplate.update(
+        "UPDATE books SET isbn=?, title=?, author_id=?  WHERE isbn=?",book.getIsbn(),book.getTitle(),book.getAuthorId(),isbn );}
 }
+
