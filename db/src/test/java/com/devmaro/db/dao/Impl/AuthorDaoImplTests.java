@@ -58,4 +58,10 @@ public class AuthorDaoImplTests {
 
     }
 
+    @Test
+    public void TestThatCanGenerateTheCorrectSql(){
+        underTest.delete(1L);
+        verify(jdbcTemplate).update("delete from authors where id=?" ,1L);
+    }
+
 }
