@@ -1,11 +1,10 @@
-package com.devmaro.db.dao.Impl;
+package com.devmaro.db.repositories;
 
 import com.devmaro.db.TestDataUtil;
 import com.devmaro.db.dao.BookDao;
 import com.devmaro.db.dao.impl.AuthorDaoImpl;
 import com.devmaro.db.dao.impl.BookDaoImpl;
 import com.devmaro.db.domain.Author;
-import com.devmaro.db.domain.Book;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,14 +25,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class BookDaoImplIntegrationTests {
 
 
-    private AuthorDaoImpl authorDao;
-    private BookDaoImpl underTest;
+    private BookRepository underTest;
 
     @Autowired
 
-    public BookDaoImplIntegrationTests(BookDaoImpl underTest,AuthorDaoImpl authorDao) {
+    public BookDaoImplIntegrationTests(BookRepository underTest) {
         this.underTest = underTest;
-        this.authorDao= authorDao;
     }
 
     @Test

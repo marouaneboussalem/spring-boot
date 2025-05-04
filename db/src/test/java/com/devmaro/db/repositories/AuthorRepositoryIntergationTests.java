@@ -1,4 +1,4 @@
-package com.devmaro.db.dao.Impl;
+package com.devmaro.db.repositories;
 
 import com.devmaro.db.TestDataUtil;
 import com.devmaro.db.dao.impl.AuthorDaoImpl;
